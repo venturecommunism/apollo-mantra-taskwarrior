@@ -1,43 +1,13 @@
-import { Meteor } from 'meteor/meteor';
-import { render } from 'react-dom';
-import React from 'react';
-import { Accounts } from 'meteor/accounts-base';
+import { initContext } from './configs/context'
+import { createApp } from 'mantra-core'
 
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
+import feedModule from './modules/feed'
 
-import { registerGqlTag } from 'apollo-client/gql';
-registerGqlTag();
+const context = initContext()
 
-import App from '/imports/ui/App';
+const app = createApp(context)
 
-const networkInterface = createNetworkInterface('/graphql');
+app.loadModule(feedModule)
 
-networkInterface.use([{
-  applyMiddleware(request, next) {
-    const currentUserToken = Accounts._storedLoginToken();
+app.init()
 
-    if (!currentUserToken) {
-      next();
-      return;
-    }
-
-    if (!request.options.headers) {
-      request.options.headers = new Headers();
-    }
-
-    request.options.headers.Authorization = currentUserToken;
-
-    next();
-  }
-}]);
-
-const client = new ApolloClient({
-  networkInterface,
-});
-
-Meteor.startup(() => {
-  render(<ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>, document.getElementById('app'));
-});

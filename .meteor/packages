@@ -21,3 +21,10 @@ std:accounts-ui
 std:accounts-basic
 accounts-password
 react-meteor-data
+
+####   Mantra   ####
+kadira:flow-router
+reactive-dict
+
+####   Util   ####
+momentjs:moment
