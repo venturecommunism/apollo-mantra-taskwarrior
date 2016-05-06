@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-apollo';
-import { Meteor } from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
-import { Accounts } from 'meteor/std:accounts-ui';
+import { ApolloProvider } from 'react-apollo'
+
+import React from 'react'
+import { connect } from 'react-apollo'
+import { Meteor } from 'meteor/meteor'
+import { createContainer } from 'meteor/react-meteor-data'
+import { Accounts } from 'meteor/std:accounts-ui'
 
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY'
-});
+})
 
 const App = ({ userId, currentUser }) => {
   return (
@@ -43,16 +45,20 @@ const AppWithData = connect({
             id: ownProps.userId,
           },
         },
-      };
+      }
     }
   },
-})(App);
+})(App)
 
 // This container brings in Tracker-enabled Meteor data
 const AppWithUserId = createContainer(() => {
   return {
     userId: Meteor.userId(),
-  };
-}, AppWithData);
+  }
+}, AppWithData)
 
-export default AppWithUserId;
+export default ({client}) => (
+  <ApolloProvider client={client} >
+    <AppWithUserId />
+  </ApolloProvider>
+)

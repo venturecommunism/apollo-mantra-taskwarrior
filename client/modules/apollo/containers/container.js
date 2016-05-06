@@ -34,7 +34,11 @@ const collectionComposer = ({context}, onData) => {
   sendData()
 }
 
-export default (actionsMapper, component) => composeAll(
+const contextMapper = (context, actions) => ({
+  context: () => context,
+})
+
+export default (component) => composeAll(
   composeWithTracker(collectionComposer),
-  useDeps(actionsMapper)
+  useDeps(contextMapper)
 )(component)

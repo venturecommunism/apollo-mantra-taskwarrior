@@ -1,9 +1,8 @@
 import React from 'react'
 
-import UserQuery from '../../apollo/state/apollocontext.js'
-import UserComponent from '../../apollo/components/provider.jsx'
-import ApolloProviderContainer from '../../apollo/containers/apolloprovidercontainer.js'
-const UserContainer = ApolloProviderContainer(UserQuery, UserComponent)
+import LoginAndUserComponent from '../../apollo/components/loginanduser.jsx'
+import Container from '../../apollo/containers/container.js'
+const LoginAndUserContainer = Container(LoginAndUserComponent)
 
 export default class extends React.Component {
   render() {
@@ -13,7 +12,7 @@ export default class extends React.Component {
           <div className="col-md-3">
           </div>
           <div className="col-md-9">
-            <UserContainer />
+            <LoginAndUserContainer />
           </div>
         </div>
       </div>
