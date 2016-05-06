@@ -1,12 +1,5 @@
-import { registerGqlTag } from 'apollo-client/gql'
-import { createNetworkInterface } from 'apollo-client'
-
-registerGqlTag()
-
-networkInterface = createNetworkInterface('/graphql')
-
-networkInterface.use([{
-  applyMiddleware(request, next) {
+export default {
+  authtokens({context, Accounts}, request, next) {
     const currentUserToken = Accounts._storedLoginToken()
     if (!currentUserToken) {
       next()
@@ -17,8 +10,5 @@ networkInterface.use([{
     }
     request.options.headers.Authorization = currentUserToken
     next()
-  }
-}])
-
-export default {
+  },
 }

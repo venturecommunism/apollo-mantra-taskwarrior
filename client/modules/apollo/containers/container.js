@@ -1,6 +1,6 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core'
 
-const collectionComposer = ({context}, onData) => {
+const collectionComposer = ({context, authtokens}, onData) => {
   const { registerGqlTag, createNetworkInterface, ApolloClient, Meteor, Accounts } = context()
   registerGqlTag()
 
@@ -8,16 +8,7 @@ const collectionComposer = ({context}, onData) => {
 
   networkInterface.use([{
     applyMiddleware(request, next) {
-      const currentUserToken = Accounts._storedLoginToken()
-      if (!currentUserToken) {
-        next()
-        return
-      }
-      if (!request.options.headers) {
-        request.options.headers = new Headers()
-      }
-      request.options.headers.Authorization = currentUserToken
-      next()
+      authtokens(request, next)
     }
   }])
 
@@ -35,6 +26,7 @@ const collectionComposer = ({context}, onData) => {
 }
 
 const contextMapper = (context, actions) => ({
+  authtokens: actions.loginanduser.authtokens,
   context: () => context,
 })
 
