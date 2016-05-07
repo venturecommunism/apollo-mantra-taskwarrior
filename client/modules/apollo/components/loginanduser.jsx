@@ -37,7 +37,7 @@ const AppWithData = connect({
                   address
                   verified
                 }
-                randomString
+                randomUserString
               }
             }
           `,

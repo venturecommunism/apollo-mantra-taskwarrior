@@ -11,7 +11,7 @@ export const users = {
   },
   User: {
     emails: ({emails}) => emails,
-    randomString: () => Random.id(),
+    randomUserString: () => Random.id(),
   }
 }
 

@@ -7,7 +7,7 @@ type Email {
 
 type User {
   emails: [Email]
-  randomString: String
+  randomUserString: String
 }
 
 type Query {
