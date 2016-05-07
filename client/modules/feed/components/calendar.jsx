@@ -27,7 +27,6 @@ const App = ({ userId, calendar }) => {
 // This container brings in Apollo GraphQL data
 const AppWithData = connect({
   mapQueriesToProps({ ownProps }) {
-    alert(Object.keys(ownProps))
     if (ownProps.userId) {
       return {
         calendar: {
