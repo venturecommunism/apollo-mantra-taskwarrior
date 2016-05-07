@@ -5,7 +5,8 @@ import express from 'express';
 import proxyMiddleware from 'http-proxy-middleware';
 import { check } from 'meteor/check';
 
-import { schema, resolvers } from './schema';
+import { schema } from './schema/index'
+import { resolvers } from './resolvers/index'
 
 const GRAPHQL_PORT = 4000;
 
