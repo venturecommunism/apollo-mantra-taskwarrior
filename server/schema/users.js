@@ -10,10 +10,6 @@ type User {
   randomUserString: String
 }
 
-type Query {
-  user(id: String!): User
-}
-
 `;
 
 export default users
