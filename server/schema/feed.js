@@ -7,7 +7,7 @@ type Task {
 }
 
 type Query {
-  feed(id: String!): Task
+  feed(description: String!): Task
   user(id: String!): User
 }
 

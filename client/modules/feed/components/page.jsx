@@ -1,5 +1,9 @@
 import React from 'react';
 
+import CalendarComponent from './calendar.jsx'
+import ApolloContainer from '../../apollo/containers/container'
+const CalendarContainer = ApolloContainer(CalendarComponent)
+
 import createTaskComposer from '../state/createtask'
 import CreateTask from './createtask.jsx'
 const CreateTaskContainer = createTaskComposer(CreateTask) 
@@ -20,8 +24,8 @@ const SideBarContainer = ParamsComposer(Container(SideBarQuery, SideBar))
 import OverDueQuery from '../state/overduequery'
 const OverDueContainer = Container(OverDueQuery, Feed)
 
-import CalendarQuery from '../state/calendarquery'
-const CalendarContainer = Container(CalendarQuery, Feed)
+//import CalendarQuery from '../state/calendarquery'
+//const CalendarContainer = Container(CalendarQuery, Feed)
 
 export default class extends React.Component {
   render() {

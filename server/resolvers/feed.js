@@ -1,13 +1,11 @@
 import { Random } from 'meteor/random'
+import { tasks } from '/lib/collections/collections'
 
 export const feed = {
 
   Query: {
     feed(root, args, context) {
-      // Only return the current user, for security
-      if (context.user._id === args.owner) {
-        return tasks.findOne({});
-      }
+      return tasks.findOne();
     },
     user(root, args, context) {
       // Only return the current user, for security
