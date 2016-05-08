@@ -5,7 +5,7 @@ export const feed = {
 
   Query: {
     feed(root, args, context) {
-      return tasks.findOne();
+      return tasks.find().fetch();
     },
     user(root, args, context) {
       // Only return the current user, for security
